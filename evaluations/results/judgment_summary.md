@@ -1,4 +1,3 @@
 | overall_judgment   |   count |
 |:-------------------|--------:|
-|                    |       3 |
-| Successful         |       2 |
+| Successful         |       5 |
