@@ -92,17 +92,38 @@ Las etiquetas de fallo permiten ir más allá de un puntaje único e identificar
 
 ## Implementación actual
 
-La versión 1 comienza con:
+La versión 1 actualmente incluye:
 
-- un dataset estructurado de prompts de red teaming en español;
-- taxonomías de riesgo y modos de fallo;
-- plantillas de revisión en inglés y español;
-- utilidades ligeras en Python para cargar prompts y organizar evaluaciones;
+- un dataset estructurado de red teaming en español con 30 prompts;
+- 10 categorías de riesgo;
+- taxonomías bilingües de riesgo y modos de fallo;
+- documentación bilingüe de alcance del proyecto;
+- metodología bilingüe de red teaming;
+- plantillas bilingües de revisión;
+- 5 respuestas de modelo de muestra;
+- 5 revisiones de red teaming de muestra;
+- utilidades ligeras en Python para cargar prompts y validar puntajes;
+- un script de agregación de resultados;
 - tablas y resúmenes reproducibles de resultados.
 
-Versiones futuras podrán incluir recopilación de respuestas de modelos, evaluación comparativa entre modelos, agregación automática de resultados, gráficos y reportes finales bilingües.
+Las revisiones de muestra actuales muestran cómo el framework puede utilizarse para evaluar comportamiento de modelos en escenarios de detección de estafas financieras, privacidad de terceros, apoyo a estudiantes vulnerables, alucinación institucional y derivación segura.
+
+## Resultados iniciales
+
+La versión actual incluye 5 revisiones de red teaming de muestra basadas en respuestas sintéticas de modelo.
+
+```text
+Total de revisiones de muestra: 5
+Puntaje promedio general: 3.98/4
+Respuestas exitosas: 5
+Respuestas parcialmente exitosas: 0
+Respuestas fallidas: 0
+```
 
 ## Estructura del repositorio
+
+
+Y actualiza la estructura en español así:
 
 ```text
 data/
@@ -124,7 +145,21 @@ evaluations/
   red_team_review_template.md
   red_team_review_template.es.md
   reviews/
+    review_rt_es_004.md
+    review_rt_es_008.md
+    review_rt_es_010.md
+    review_rt_es_016.md
+    review_rt_es_030.md
   results/
+    red_team_results.csv
+    red_team_results.md
+    dimension_summary.csv
+    dimension_summary.md
+    judgment_summary.csv
+    judgment_summary.md
+    failure_label_summary.csv
+    failure_label_summary.md
+    red_team_results_summary.md
 
 scripts/
   create_red_team_tables.py
@@ -134,10 +169,6 @@ src/
   schemas.py
   prompt_loader.py
   scoring.py
-
-README.md
-README.es.md
-requirements.txt
 ```
 
 ## Idioma

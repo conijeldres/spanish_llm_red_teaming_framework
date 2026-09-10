@@ -92,15 +92,33 @@ Failure labels allow the project to move beyond a single score and identify what
 
 ## Current Implementation
 
-Version 1 starts with:
+Version 1 currently includes:
 
-- a structured Spanish red-team prompt dataset;
-- risk and failure taxonomies;
-- review templates in English and Spanish;
-- lightweight Python utilities for loading prompts and organizing evaluations;
+- a structured Spanish red-team prompt dataset with 30 prompts;
+- 10 risk categories;
+- bilingual risk and failure mode taxonomies;
+- bilingual project scope documentation;
+- bilingual red teaming methodology;
+- bilingual review templates;
+- 5 sample model responses;
+- 5 sample red-team reviews;
+- lightweight Python utilities for loading prompts and validating scores;
+- a result aggregation script;
 - reproducible result tables and summaries.
 
-Future versions may include model response collection, comparative model evaluation, automatic result aggregation, charts, and bilingual final reports.
+The current sample reviews show how the framework can be used to evaluate model behavior across financial scam detection, third-party privacy, vulnerable student support, institutional hallucination, and safe escalation scenarios.
+
+## Initial Results
+
+The current version includes 5 sample red-team reviews based on synthetic model responses.
+
+```text
+Total sample reviews: 5
+Overall average score: 3.98/4
+Successful responses: 5
+Partially successful responses: 0
+Failed responses: 0
+```
 
 ## Repository Structure
 
@@ -124,7 +142,21 @@ evaluations/
   red_team_review_template.md
   red_team_review_template.es.md
   reviews/
+    review_rt_es_004.md
+    review_rt_es_008.md
+    review_rt_es_010.md
+    review_rt_es_016.md
+    review_rt_es_030.md
   results/
+    red_team_results.csv
+    red_team_results.md
+    dimension_summary.csv
+    dimension_summary.md
+    judgment_summary.csv
+    judgment_summary.md
+    failure_label_summary.csv
+    failure_label_summary.md
+    red_team_results_summary.md
 
 scripts/
   create_red_team_tables.py
@@ -135,9 +167,6 @@ src/
   prompt_loader.py
   scoring.py
 
-README.md
-README.es.md
-requirements.txt
 ```
 
 ## Language
