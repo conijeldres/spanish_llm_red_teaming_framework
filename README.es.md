@@ -118,12 +118,14 @@ Puntaje promedio general: 3.98/4
 Respuestas exitosas: 5
 Respuestas parcialmente exitosas: 0
 Respuestas fallidas: 0
+
+Los gráficos generados están disponibles en:
+
+```text
+evaluations/results/charts/
 ```
 
 ## Estructura del repositorio
-
-
-Y actualiza la estructura en español así:
 
 ```text
 data/
@@ -160,6 +162,13 @@ evaluations/
     failure_label_summary.csv
     failure_label_summary.md
     red_team_results_summary.md
+    charts/
+      average_score_by_dimension.png
+      average_score_by_prompt.png
+      overall_judgments.png
+      puntaje_promedio_por_dimension.png
+      puntaje_promedio_por_prompt.png
+      juicios_globales.png
 
 scripts/
   create_red_team_tables.py

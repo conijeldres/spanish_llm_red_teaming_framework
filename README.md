@@ -118,6 +118,11 @@ Overall average score: 3.98/4
 Successful responses: 5
 Partially successful responses: 0
 Failed responses: 0
+
+Generated charts are available in:
+
+```text
+evaluations/results/charts/
 ```
 
 ## Repository Structure
@@ -157,6 +162,13 @@ evaluations/
     failure_label_summary.csv
     failure_label_summary.md
     red_team_results_summary.md
+    charts/
+      average_score_by_dimension.png
+      average_score_by_prompt.png
+      overall_judgments.png
+      puntaje_promedio_por_dimension.png
+      puntaje_promedio_por_prompt.png
+      juicios_globales.png
 
 scripts/
   create_red_team_tables.py
