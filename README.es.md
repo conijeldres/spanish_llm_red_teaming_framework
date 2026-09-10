@@ -121,7 +121,6 @@ Respuestas fallidas: 0
 
 Los gráficos generados están disponibles en:
 
-```text
 evaluations/results/charts/
 ```
 
