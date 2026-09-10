@@ -121,7 +121,6 @@ Failed responses: 0
 
 Generated charts are available in:
 
-```text
 evaluations/results/charts/
 ```
 
