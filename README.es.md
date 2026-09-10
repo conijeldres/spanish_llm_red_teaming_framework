@@ -123,11 +123,11 @@ Los gráficos generados están disponibles en:
 
 evaluations/results/charts/
 ```
-## Final Report
+## Reporte final
 
-The full project report is available here:
+El reporte completo del proyecto está disponible aquí:
 
-- [Final report](docs/final_report.md)
+- [Reporte final](docs/final_report.es.md)
 
 ## Estructura del repositorio
 
