@@ -110,7 +110,9 @@ data/
   model_responses_sample.jsonl
   taxonomies/
     risk_categories.md
+    risk_categories.es.md
     failure_modes.md
+    failure_modes.es.md
 
 docs/
   project_scope.md
