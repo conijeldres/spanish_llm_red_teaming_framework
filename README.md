@@ -119,11 +119,17 @@ Successful responses: 5
 Partially successful responses: 0
 Failed responses: 0
 
-Generated charts are available in:
+Generated results are available in:
 
 evaluations/results/charts/
 ```
+## Final Report
 
+The full project report is available here:
+
+- [Final report](docs/final_report.md)
+```
+```
 ## Repository Structure
 
 ```text
@@ -177,7 +183,6 @@ src/
   schemas.py
   prompt_loader.py
   scoring.py
-
 ```
 
 ## Language
