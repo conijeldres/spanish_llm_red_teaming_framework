@@ -3,10 +3,12 @@ import re
 from collections import Counter
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 REVIEWS_DIR = Path("evaluations/reviews")
 RESULTS_DIR = Path("evaluations/results")
+CHARTS_DIR = RESULTS_DIR / "charts"
 
 DIMENSIONS = [
     "Risk Recognition",
@@ -88,6 +90,109 @@ def save_markdown_table(df: pd.DataFrame, path: Path) -> None:
     path.write_text(df.to_markdown(index=False), encoding="utf-8")
 
 
+def create_charts(results_df: pd.DataFrame) -> None:
+    CHARTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    dimension_map_es = {
+        "Risk Recognition": "Reconocimiento del riesgo",
+        "Safety Boundary": "Límite de seguridad",
+        "Hallucination Control": "Control de alucinaciones",
+        "Privacy Protection": "Protección de privacidad",
+        "Bias and Fairness": "Sesgo y equidad",
+        "Cultural Robustness": "Robustez cultural",
+        "Uncertainty Handling": "Manejo de incertidumbre",
+        "User Usefulness": "Utilidad para el usuario",
+    }
+
+    judgment_map_es = {
+        "Successful": "Exitosa",
+        "Partially successful": "Parcialmente exitosa",
+        "Failed": "Fallida",
+    }
+
+    dimension_averages = results_df[DIMENSIONS].mean().sort_values(ascending=False)
+
+    plt.figure(figsize=(10, 6))
+    dimension_averages.plot(kind="bar")
+    plt.title("Average Score by Dimension")
+    plt.xlabel("Dimension")
+    plt.ylabel("Average score")
+    plt.ylim(0, 4)
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "average_score_by_dimension.png", dpi=200)
+    plt.close()
+
+    dimension_averages_es = dimension_averages.copy()
+    dimension_averages_es.index = [
+        dimension_map_es.get(dimension, dimension)
+        for dimension in dimension_averages_es.index
+    ]
+
+    plt.figure(figsize=(10, 6))
+    dimension_averages_es.plot(kind="bar")
+    plt.title("Puntaje promedio por dimensión")
+    plt.xlabel("Dimensión")
+    plt.ylabel("Puntaje promedio")
+    plt.ylim(0, 4)
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "puntaje_promedio_por_dimension.png", dpi=200)
+    plt.close()
+
+    prompt_averages = results_df.groupby("prompt_id")["average_score"].mean().sort_index()
+
+    plt.figure(figsize=(10, 6))
+    prompt_averages.plot(kind="bar")
+    plt.title("Average Score by Prompt")
+    plt.xlabel("Prompt ID")
+    plt.ylabel("Average score")
+    plt.ylim(0, 4)
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "average_score_by_prompt.png", dpi=200)
+    plt.close()
+
+    plt.figure(figsize=(10, 6))
+    prompt_averages.plot(kind="bar")
+    plt.title("Puntaje promedio por prompt")
+    plt.xlabel("ID del prompt")
+    plt.ylabel("Puntaje promedio")
+    plt.ylim(0, 4)
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "puntaje_promedio_por_prompt.png", dpi=200)
+    plt.close()
+
+    judgment_counts = results_df["overall_judgment"].value_counts()
+
+    plt.figure(figsize=(8, 5))
+    judgment_counts.plot(kind="bar")
+    plt.title("Overall Judgments")
+    plt.xlabel("Judgment")
+    plt.ylabel("Count")
+    plt.xticks(rotation=30, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "overall_judgments.png", dpi=200)
+    plt.close()
+
+    judgment_counts_es = judgment_counts.copy()
+    judgment_counts_es.index = [
+        judgment_map_es.get(judgment, judgment)
+        for judgment in judgment_counts_es.index
+    ]
+
+    plt.figure(figsize=(8, 5))
+    judgment_counts_es.plot(kind="bar")
+    plt.title("Juicios globales")
+    plt.xlabel("Juicio")
+    plt.ylabel("Conteo")
+    plt.xticks(rotation=30, ha="right")
+    plt.tight_layout()
+    plt.savefig(CHARTS_DIR / "juicios_globales.png", dpi=200)
+    plt.close()
+
+
 def main() -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -160,7 +265,10 @@ def main() -> None:
 
     (RESULTS_DIR / "red_team_results_summary.md").write_text(summary, encoding="utf-8")
 
+    create_charts(results_df)
+
     print(f"Saved results to {RESULTS_DIR}")
+    print(f"Saved charts to {CHARTS_DIR}")
 
 
 if __name__ == "__main__":
