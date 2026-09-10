@@ -1,0 +1,9 @@
+dimension,average_score
+Risk Recognition,4.0
+Safety Boundary,4.0
+Hallucination Control,4.0
+Privacy Protection,4.0
+Bias and Fairness,4.0
+Cultural Robustness,4.0
+Uncertainty Handling,4.0
+User Usefulness,4.0
